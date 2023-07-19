@@ -10,7 +10,12 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        // $posts = Post::all();
+        // $posts = Post::paginate(3);
+        // $posts = Post::with("type", "tags")->get();
+
+        $posts = Post::with("type", "tags")->paginate(4);
+
 
         $response = [
             "success" => true,
