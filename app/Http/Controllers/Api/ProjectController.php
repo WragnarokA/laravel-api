@@ -11,7 +11,7 @@ class ProjectController extends Controller
     public function index()
     {
         // $posts = Post::all();
-        // $posts = Post::paginate(3);
+        // $posts = Post::paginate(4);
         // $posts = Post::with("type", "tags")->get();
 
         $posts = Post::with("type", "tags")->paginate(4);
@@ -20,7 +20,17 @@ class ProjectController extends Controller
         $response = [
             "success" => true,
             "results" => $posts,
-            "message" => "prova",
+        ];
+        return response()->json($response);
+    }
+
+    public function show($id)
+    {
+        $post = Post::with("type", "tags")->find($id);
+
+        $response = [
+            "success" => true,
+            "results" => $post,
         ];
         return response()->json($response);
     }
